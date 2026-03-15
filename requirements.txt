@@ -1,0 +1,10 @@
+# 核心依赖
+fastapi>=0.104.1
+uvicorn>=0.27.0
+langchain>=0.1.10
+python-dotenv>=1.0.0
+pymysql>=1.1.0
+sqlalchemy>=2.0.23
+openai>=1.13.3
+click>=8.1.7  # 用于构建命令行交互
+rich>=13.7.0  # 美化命令行输出（可选）
