@@ -406,22 +406,52 @@ def rag_retrieve(query):
     console.print("[green]检索结果：[/green]")
     console.print(content)
 
+def summarize_text(text: str, max_len: int = 300) -> str:
+    """
+    将过长回答压缩为摘要，避免 memory 过大
+    """
+    if not text:
+        return ""
+
+    if len(text) <= max_len:
+        return text
+
+    return text[:max_len] + "...(summary)"
 
 @cli.command(name="agent")
-@click.option(
-    "--query",
-    prompt="请输入你的需求（例如：给我学习建议 / 根据 Python 字典知识点出题 / 看看我的错题本）",
-    help="自然语言描述需求，Agent 会规划调用工具并回复",
-)
-def agent_cmd(query):
-    """智能学习助手：根据需求规划调用工具（画像、错题本、RAG、出题、学习建议等）"""
-    console.print("[blue]🤖 学习助手正在规划并执行...[/blue]")
-    try:
-        result = run_learning_agent(query.strip() or "请给我当前的学习建议。")
-        console.print("[green]助手回复：[/green]")
-        console.print(result)
-    except Exception as e:
-        console.print(f"[red]执行失败：{e}[/red]")
+def agent_cmd():
+    """智能学习助手（支持多轮对话）"""
+
+    console.print("[blue]🤖 LearnPilot 学习助手启动[/blue]")
+    console.print("[dim]输入 exit 退出对话[/dim]")
+    console.print("[blue]🤖 请输入你的需求,例如我想要学习XXX知识点/我的错题本/给我一个学习建议")
+    history = []
+
+    while True:
+
+        query = console.input("\n[bold cyan]你：[/bold cyan] ").strip()
+
+        if query.lower() in ["exit", "quit"]:
+            console.print("[yellow]对话结束 👋[/yellow]")
+            break
+
+        console.print("[blue]🤖 思考中...[/blue]")
+
+        try:
+
+            result = run_learning_agent(
+                query,
+                history=history
+            )
+
+            console.print("[green]助手：[/green]")
+            console.print(result)
+
+            history.append(("user", query))
+            history.append(("assistant", summarize_text(result)))
+
+        except Exception as e:
+            console.print(f"[red]执行失败：{e}[/red]")
 
 
 if __name__ == "__main__":
