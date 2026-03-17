@@ -49,6 +49,13 @@ class PDFRAG:
         console.print(f"✅ 向量库已保存到：{save_path}")
         return vector_db
 
+    def build_from_pdf(self, pdf_path):
+        """一键从PDF构建向量数据库"""
+        docs = self.load_pdf(pdf_path)
+        chunks = self.split_text(docs)
+        self.build_vector_db(chunks)
+        return "向量数据库构建完成"
+
     def load_vector_db(self, save_name="pdf_knowledge"):
         """加载向量库（如果已存在）"""
         save_path = f"{self.vector_db_dir}/{save_name}"

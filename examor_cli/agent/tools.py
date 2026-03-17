@@ -72,18 +72,44 @@ def get_hard_questions_tool() -> str:
         )
     return "\n".join(lines)
 
+@tool
+def build_vector_db_tool(pdf_path: str) -> str:
+    """根据PDF构建向量数据库"""
+    rag = PDFRAG()
+    try:
+        rag.build_from_pdf(pdf_path)
+        return "PDF知识库构建完成"
+    except Exception as e:
+        return f"构建失败: {e}"
 
 @tool
 def get_rag_context_tool(query: str) -> str:
-    """从 PDF 知识库中检索与 query 相关的上下文。在基于 PDF 出题前需先调用此工具获取知识内容。query 为用户想考察的知识点或主题。"""
+    """从 PDF 知识库中检索相关内容"""
     if not query or not query.strip():
-        return "请提供非空的检索内容（知识点或主题）。"
+        return "请提供非空的检索内容。"
+    rag = PDFRAG()
+    if not rag.vector_db_exists():
+        return (
+            "当前没有PDF知识库。\n"
+            "如果希望基于PDF出题，请输入PDF路径，例如：\n"
+            "./knowledge_base/xxx.pdf"
+        )
     try:
-        rag = PDFRAG()
         return rag.retrieve(query.strip(), k=5)
-    except Exception as e:
-        return f"RAG 检索失败：{e}。请确认已运行 build-vector-db 构建过向量库。"
 
+    except Exception as e:
+        return f"RAG检索失败: {e}"
+@tool
+def clear_vector_db_tool() -> str:
+    """清空本地 PDF 向量数据库。"""
+    import shutil
+    import os
+    path = "./vector_db/"
+    if os.path.exists(path):
+        shutil.rmtree(path)
+        os.makedirs(path)
+        return "向量数据库已清空"
+    return "向量数据库不存在"
 
 @tool
 def generate_questions_tool(
@@ -171,6 +197,8 @@ def get_all_agent_tools() -> list:
         generate_questions_tool,
         save_generated_questions_to_db_tool,
         generate_learning_suggestions_tool,
+        clear_vector_db_tool,
+        build_vector_db_tool,
     ]
 
 
@@ -183,4 +211,6 @@ __all__ = [
     "generate_learning_suggestions_tool",
     "get_all_agent_tools",
     "_generate_learning_suggestions_impl",
+    "clear_vector_db_tool",
+    "build_vector_db_tool",
 ]

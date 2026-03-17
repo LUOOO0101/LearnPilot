@@ -1,0 +1,150 @@
+{
+  "timestamp": "2026-03-16T17:12:36.154373",
+  "rag_evaluation": {
+    "Recall@1": 0.0,
+    "Precision@1": 0.0,
+    "Recall@3": 0.0,
+    "Precision@3": 0.0,
+    "Recall@5": 0.0,
+    "Precision@5": 0.0
+  },
+  "question_evaluation": {
+    "results": [
+      {
+        "format_valid_rate": 1.0,
+        "avg_score": 9.666666666666666,
+        "total_questions": 3
+      },
+      {
+        "format_valid_rate": 1.0,
+        "avg_score": 9.333333333333334,
+        "total_questions": 3
+      },
+      {
+        "format_valid_rate": 1.0,
+        "avg_score": 9.333333333333334,
+        "total_questions": 3
+      }
+    ],
+    "average_format_valid_rate": 1.0,
+    "average_score": 9.444444444444445,
+    "success_rate": 1.0
+  },
+  "agent_evaluation": {
+    "results": [
+      {
+        "input": "我想了解我的学习情况",
+        "description": "获取用户画像和学习建议",
+        "expected_tools": [
+          "get_user_profile_tool",
+          "generate_learning_suggestions_tool"
+        ],
+        "used_tools": [],
+        "tool_accuracy": 0.0,
+        "task_success": false,
+        "response": "## 您的学习情况总结\n\n**基本情况：**\n- 您目前还没有明显的弱项题型（正确率<60%且作答≥3次的题型）\n- 错题本中暂无易错题\n- 答题数据较少，需要更多练习来建立准确的学习画像\n\n**各题型表现：**\n1. **单选题**：作答2次，正确率50%\n2. **简答题**：作答2次，正确率0%\n\n**学习建议：**\n由于您目前的答题数据较少，系统还无法生成针对性的学习建议。建议您：\n\n1...."
+      },
+      {
+        "input": "根据 Python 字典的特性出题",
+        "description": "根据知识点出题",
+        "expected_tools": [
+          "get_user_profile_tool",
+          "get_rag_context_tool",
+          "generate_questions_tool",
+          "save_generated_questions_to_db_tool"
+        ],
+        "used_tools": [],
+        "tool_accuracy": 0.0,
+        "task_success": true,
+        "response": "根据您的学习画像，我看到您：\n- 单选题正确率：50%（作答2次）\n- 简答题正确率：0%（作答2次）\n- 目前没有明显的弱项题型\n\n我已经基于 Python 字典的特性生成了5道题目（包含单选题和简答题），并保存到了题库。这些题目涵盖了字典的核心特性，包括：\n\n1. 字典的基本结构和特性\n2. 字典的键值对要求\n3. 字典的操作方法\n4. 字典的性能特点\n5. 字典的实际应用\n\n这些题目将帮助您..."
+      },
+      {
+        "input": "查看我的错题本",
+        "description": "查看易错题",
+        "expected_tools": [
+          "get_hard_questions_tool"
+        ],
+        "used_tools": [],
+        "tool_accuracy": 0.0,
+        "task_success": false,
+        "response": "根据系统查询结果，您目前**没有符合条件的易错题**。\n\n这意味着：\n1. 您可能还没有做过足够多的题目（需要作答次数≥3次）\n2. 或者您的正确率都保持在60%以上，表现不错！\n\n**建议：**\n- 如果您想查看错题，可以先做一些练习题目\n- 系统会在您完成一定数量的练习后，自动识别并记录易错题\n- 您可以尝试说\"我想练习\"或\"给我出题\"来开始练习\n\n您想现在开始练习一些题目吗？"
+      },
+      {
+        "input": "我该如何提升我的 Python 编程能力",
+        "description": "获取学习建议",
+        "expected_tools": [
+          "get_user_profile_tool",
+          "generate_learning_suggestions_tool"
+        ],
+        "used_tools": [],
+        "tool_accuracy": 0.0,
+        "task_success": true,
+        "response": "根据您的学习画像，我为您分析如下：\n\n## 您的当前学习情况\n1. **答题数据较少**：您目前只完成了4道题目（2道单选题，2道简答题）\n2. **简答题表现需要提升**：简答题正确率为0%，这是您当前的主要薄弱点\n3. **单选题表现中等**：正确率50%，有提升空间\n\n## 提升Python编程能力的建议\n\n### 1. **基础巩固阶段**\n- **增加练习量**：您需要先完成更多题目来建..."
+      },
+      {
+        "input": "根据 Python 列表的方法出题",
+        "description": "根据知识点出题",
+        "expected_tools": [
+          "get_user_profile_tool",
+          "get_rag_context_tool",
+          "generate_questions_tool",
+          "save_generated_questions_to_db_tool"
+        ],
+        "used_tools": [],
+        "tool_accuracy": 0.0,
+        "task_success": true,
+        "response": "很好！我已经为您生成了5道关于Python列表方法的题目，并保存到了题库中。题目包含单选题和简答题两种题型。\n\n根据您的学习画像，我发现：\n1. 单选题正确率50%，需要加强练习\n2. 简答题正确率0%，这是您的薄弱环节，需要重点关注\n\n现在您可以开始练习这些题目了。题目涵盖了Python列表的各种重要方法，包括：\n- 添加元素的方法（append, extend, insert）\n- 删除元素的..."
+      }
+    ],
+    "average_tool_accuracy": 0.0,
+    "task_success_rate": 0.6
+  },
+  "system_evaluation": {
+    "end_to_end": {
+      "results": [
+        {
+          "input": "我想了解我的学习情况并获取建议",
+          "description": "获取用户画像和学习建议",
+          "success": true,
+          "execution_time": 18.482593297958374,
+          "response": "根据您的学习画像分析：\n\n## 📊 您的学习情况总结\n\n**当前状态：**\n- 弱项题型：暂无（正确率<60%且作答≥3次的题型）\n- 易错题数量：0题\n- 各题型表现：\n  - 单选题：作答2次，正确率50%\n  - 简答题：作答2次，正确率0%\n\n## 💡 学习建议\n\n由于您目前答题数据较少（总共只做了4道题），系统还无法生成针对性的学习建议。这是正常现象，因为学习建议需要基于足够的答题数据才..."
+        },
+        {
+          "input": "根据 Python 字典的特性出 3 道题",
+          "description": "根据知识点出题",
+          "success": true,
+          "execution_time": 74.0607180595398,
+          "response": "很好！我已经根据 Python 字典的特性为您生成了 3 道题目，并保存到了题库中。题目涵盖了单选题、简答题和填空题三种题型。\n\n根据您的学习画像，我看到：\n- 单选题：作答2次，正确率50%\n- 简答题：作答2次，正确率0%\n\n建议您在练习时特别注意简答题的答题技巧，可以多练习这类题型来提升成绩。\n\n现在您可以开始练习这些题目了。如果您想查看题目，请告诉我，我可以为您展示这些关于 Python ..."
+        },
+        {
+          "input": "查看我的错题本",
+          "description": "查看易错题",
+          "success": true,
+          "execution_time": 10.925431489944458,
+          "response": "根据系统查询结果，您目前**没有符合条件的易错题**。\n\n这意味着：\n1. 您可能还没有做过足够多的题目（需要作答次数≥3次）\n2. 或者您的正确率都保持在60%以上，表现不错！\n\n**建议：**\n- 如果您想查看错题，可以先做一些练习题目\n- 当您对某些题目反复出错（正确率低于60%）时，系统会自动将它们收录到错题本中\n- 错题本可以帮助您重点复习薄弱知识点\n\n您想现在开始练习一些题目吗？我可以..."
+        },
+        {
+          "input": "我该如何提升我的 Python 编程能力",
+          "description": "获取学习建议",
+          "success": true,
+          "execution_time": 26.61190700531006,
+          "response": "根据您的学习画像，我为您分析如下：\n\n## 您的当前学习情况\n1. **答题数据较少**：您目前只完成了4道题目（2道单选题，2道简答题）\n2. **简答题表现需要提升**：简答题正确率为0%，这是您当前最需要关注的题型\n3. **单选题表现中等**：正确率50%，有提升空间\n\n## 提升Python编程能力的建议\n\n### 1. **基础巩固阶段**\n- **增加练习量**：由于您答题数据较少，..."
+        },
+        {
+          "input": "根据 Python 列表的方法出 2 道题",
+          "description": "根据知识点出题",
+          "success": true,
+          "execution_time": 60.62344551086426,
+          "response": "根据您的学习画像，我看到您：\n- 单选题正确率：50%（作答2次）\n- 简答题正确率：0%（作答2次）\n- 目前没有明显的弱项题型\n\n我已经为您生成了2道关于Python列表方法的题目，并保存到了题库。题目包括：\n1. 一道单选题\n2. 一道简答题\n\n这些题目涵盖了Python列表的常用方法，如添加、删除、排序等操作。您可以通过练习这些题目来巩固对Python列表方法的理解。\n\n您可以开始练习这些..."
+        }
+      ],
+      "success_rate": 1.0,
+      "average_execution_time": 38.14081907272339
+    },
+    "manual_evaluation_form": "# 系统人工评估表单\n\n## 评估维度\n\n### 1. 功能完整性\n- [ ] 能够正确响应所有测试用例\n- [ ] 能够正确调用所需工具\n- [ ] 能够生成正确的题目\n- [ ] 能够提供有用的学习建议\n\n### 2. 响应质量\n- [ ] 回答准确无误\n- [ ] 语言表达清晰\n- [ ] 内容相关性高\n- [ ] 建议实用性强\n\n### 3. 系统稳定性\n- [ ] 无崩溃或错误\n- [ ] 响应时间合理\n- [ ] 资源使用适度\n\n### 4. 用户体验\n- [ ] 交互流畅自然\n- [ ] 反馈及时明确\n- [ ] 界面友好易用\n\n## 测试用例评估\n\n### 用例 1: 获取用户画像和学习建议\n输入: 我想了解我的学习情况并获取建议\n评价: [ ] 优秀 [ ] 良好 [ ] 一般 [ ] 差\n\n### 用例 2: 根据知识点出题\n输入: 根据 Python 字典的特性出 3 道题\n评价: [ ] 优秀 [ ] 良好 [ ] 一般 [ ] 差\n\n### 用例 3: 查看易错题\n输入: 查看我的错题本\n评价: [ ] 优秀 [ ] 良好 [ ] 一般 [ ] 差\n\n### 用例 4: 获取学习建议\n输入: 我该如何提升我的 Python 编程能力\n评价: [ ] 优秀 [ ] 良好 [ ] 一般 [ ] 差\n\n### 用例 5: 根据知识点出题\n输入: 根据 Python 列表的方法出 2 道题\n评价: [ ] 优秀 [ ] 良好 [ ] 一般 [ ] 差\n\n"
+  },
+  "auto_evaluation": {
+    "ragas": "Ragas 未安装，请运行 'pip install ragas'",
+    "deepeval": "DeepEval 未安装，请运行 'pip install deepeval'"
+  }
+}
